@@ -91,7 +91,10 @@ export function Roulette() {
           <div className="flex flex-row w-full h-1/6 bg-slate-500">
             <div className="w-[50%] h-full bg-indigo-200 p-5">
               <div className="flex justify-center items-center w-full h-full border-2 border-black">
-                <button className="border-1 border-black p-3 hover:bg-indigo-400">
+                <button
+                  onClick={() => navigate("/profile", { replace: true })}
+                  className="border-1 border-black p-3 hover:bg-indigo-400"
+                >
                   {currentUser}
                 </button>
               </div>
