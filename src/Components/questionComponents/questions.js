@@ -1,4 +1,4 @@
-const questions = [
+export const questions = [
   {
     text: "Qual dos seguintes sistemas de administração colonial foi caracterizado pelo uso direto de governantes europeus nas colônias?",
     options: [
@@ -8,7 +8,11 @@ const questions = [
       "Administração direta",
     ],
     correctAnswer: 3, // Índice da resposta correta
-    dicas: ["Resumo do conteúdo", "Link da videoaula", "A resposta é a opção D."]
+    dicas: [
+      "Resumo do conteúdo",
+      "Link da videoaula",
+      "A resposta é a opção D.",
+    ],
   },
   {
     text: "Qual das alternativas abaixo NÃO foi uma consequência do colonialismo europeu na África e na Ásia?",
@@ -19,7 +23,11 @@ const questions = [
       "Imposição de fronteiras artificiais",
     ],
     correctAnswer: 2, // Índice da resposta correta
-    dicas: ["Resumo do conteúdo", "Link da videoaula", "A resposta é a opção C."]
+    dicas: [
+      "Resumo do conteúdo",
+      "Link da videoaula",
+      "A resposta é a opção C.",
+    ],
   },
   {
     text: "Qual era o principal objetivo das potências europeias ao estabelecer colônias?",
@@ -30,8 +38,10 @@ const questions = [
       "Proteger os povos locais contra invasões estrangeiras",
     ],
     correctAnswer: 2, // Índice da resposta correta
-    dicas: ["Resumo do conteúdo", "Link da videoaula", "A resposta é a opção C."]
+    dicas: [
+      "Resumo do conteúdo",
+      "Link da videoaula",
+      "A resposta é a opção C.",
+    ],
   },
 ];
-
-export default questions;

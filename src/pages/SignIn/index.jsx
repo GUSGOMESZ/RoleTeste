@@ -59,7 +59,7 @@ export function SignIn() {
               <div className="flex justify-center items-center h-[20%] w-full">
                 <button
                   onClick={() => navigate("/signup", { replace: true })}
-                  className="hover:bg-blue-400"
+                  className="hover:text-blue-400 hover:underline"
                 >
                   Não possui conta ? Crie uma !
                 </button>

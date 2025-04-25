@@ -3,6 +3,7 @@ import { SignIn } from "../pages/SignIn";
 import { SignUp } from "../pages/SignUp";
 import { Roulette } from "../pages/Roulette";
 import { Profile } from "../pages/Profile";
+import Question from "../pages/Question";
 import { PrivateRoute } from "./PrivateRoute";
 import { Ranking } from "../pages/Ranking";
 
@@ -16,6 +17,7 @@ export function AppRoutes() {
         {/* <Route path="/signup" element={<SignUp />} /> */}
         <Route element={<PrivateRoute />}>
           <Route path="/roulette" element={<Roulette />} />
+          <Route path="/question" element={<Question />} />
           <Route path="/ranking" element={<Ranking />} />
           <Route path="/profile" element={<Profile />} />
         </Route>

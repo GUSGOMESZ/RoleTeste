@@ -1,11 +1,11 @@
 import { useState } from "react";
-import EnviarResposta from "./components/EnviarResposta";
-import Navbar from "./components/Navbar";
-import Questionario from "./components/Questionario";
-import TituloConteudo from "./components/TituloConteudo";
-import questions from "./components/questions";
+import EnviarResposta from "../../Components/questionComponents/EnviarResposta";
+import Navbar from "../../Components/questionComponents/Navbar";
+import Questionario from "../../Components/questionComponents/Questionario";
+import TituloConteudo from "../../Components/questionComponents/TituloConteudo";
+import questions from "../../Components/questionComponents/questions";
 
-function App() {
+function Question() {
   const [botao, setBotao] = useState(false);
   const [selectedOption1, setSelectedOption1] = useState(null);
   const [feedback1, setFeedback1] = useState("");
@@ -46,18 +46,6 @@ function App() {
             setSelectedOption={setSelectedOption1}
             feedback={feedback1}
           />
-          <Questionario
-            number={1}
-            selectedOption={selectedOption2}
-            setSelectedOption={setSelectedOption2}
-            feedback={feedback2}
-          />
-          <Questionario
-            number={2}
-            selectedOption={selectedOption3}
-            setSelectedOption={setSelectedOption3}
-            feedback={feedback3}
-          />
           <EnviarResposta pressBotao={() => handleSubmit()} />
         </div>
       </div>
@@ -65,4 +53,4 @@ function App() {
   );
 }
 
-export default App;
+export default Question;

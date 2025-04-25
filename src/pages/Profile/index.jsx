@@ -10,6 +10,7 @@ import {
   Tooltip,
 } from "recharts";
 import styled from "styled-components";
+import { SubjectsGraph } from "../../Components/SubjectsGraph";
 
 const ChartBox = styled.div`
   background-color: var(--color-grey-0);
@@ -277,7 +278,9 @@ export function Profile() {
             </ResponsiveContainer>
           </ChartBox>
         </div>
-        <div className="w-[30%] h-full  border-slate-100"></div>
+        <div className="flex justify-center items-center w-[30%] h-full bg-slate-100 border-slate-100">
+          <SubjectsGraph stats={data} />
+        </div>
       </div>
     </div>
   );

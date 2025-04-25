@@ -65,6 +65,11 @@ export function Roulette() {
     window.location.reload();
   };
 
+  const toQuestion = () => {
+    navigate("/question");
+    console.log(selectedContent);
+  };
+
   return (
     <>
       <div
@@ -160,10 +165,7 @@ export function Roulette() {
                 Não
               </button>
               <button
-                onClick={() => {
-                  // Lógica para seguir para a questão
-                  closePopup();
-                }}
+                onClick={() => toQuestion()}
                 className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
               >
                 Sim
