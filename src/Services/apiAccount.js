@@ -13,3 +13,13 @@ export async function createAccount(userId, userEmail) {
 
   return { data, error };
 }
+
+export async function getAllAccounts() {
+  const { data: accountsData, error: accountsDataError } = await supabase
+    .from("accounts")
+    .select("*");
+
+  if (accountsDataError) console.error(accountsDataError);
+
+  return accountsData;
+}

@@ -32,13 +32,6 @@ export async function getStat(userEmail) {
     .eq("userid", currentUserId)
     .single();
 
-  // const { data: authUserData, error: authUserError } = await supabase
-  //   .from("stats")
-  //   .select("*")
-  //   .eq("userid", currentUserId)
-  //   .select()
-  //   .single();
-
   const { data, error } = await query;
 
   if (error) {
@@ -46,9 +39,17 @@ export async function getStat(userEmail) {
     return null;
   }
 
-  // console.log(data);
-
   return data;
 }
 
-export async function getAllStats() {}
+export async function getAllStats() {
+  const { data: usersData, error: usersDataError } = await supabase
+    .from("stats")
+    .select("*");
+
+  if (usersDataError) console.log(usersDataError);
+
+  // console.log(usersData);
+
+  return usersData;
+}

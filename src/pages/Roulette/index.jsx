@@ -92,7 +92,7 @@ export function Roulette() {
             <div className="w-[50%] h-full bg-indigo-200 p-5">
               <div className="flex justify-center items-center w-full h-full border-2 border-black">
                 <button
-                  onClick={() => navigate("/profile", { replace: true })}
+                  onClick={() => navigate("/profile")}
                   className="border-1 border-black p-3 hover:bg-indigo-400"
                 >
                   {currentUser}
@@ -101,7 +101,10 @@ export function Roulette() {
             </div>
             <div className="w-[25%] h-full bg-indigo-200 p-5">
               <div className="flex justify-center items-center w-full h-full border-2 border-black">
-                <button className="border-1 border-black p-3 hover:bg-indigo-400">
+                <button
+                  onClick={() => navigate("/ranking")}
+                  className="border-1 border-black p-3 hover:bg-indigo-400"
+                >
                   Placar De Líderes
                 </button>
               </div>
