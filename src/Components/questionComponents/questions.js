@@ -1,4 +1,4 @@
-export const questions = [
+const questions = [
   {
     text: "Qual dos seguintes sistemas de administração colonial foi caracterizado pelo uso direto de governantes europeus nas colônias?",
     options: [
@@ -45,3 +45,5 @@ export const questions = [
     ],
   },
 ];
+
+export default questions;
