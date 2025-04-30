@@ -33,12 +33,10 @@ export function Profile() {
   const currentUser = localStorage.getItem("email");
   const [data, setData] = useState([]);
 
-  // const response = getStat(currentUser);
-
   useEffect(() => {
     const fetchData = async () => {
       const response = await getStat(currentUser);
-      console.log(response);
+      console.log("reponse: " + response);
       setData(response);
     };
 
@@ -49,70 +47,70 @@ export function Profile() {
     { id: 1, type: "Total Perguntas", total: data.total },
     {
       id: 2,
-      type: "Erros/Acertos",
+      type: "Acertos/Erros",
       rights: data.right,
       wrongs: data.total - data.right,
     },
-    { id: 3, type: "T.P. Português", total: data.totalpt },
+    { id: 3, type: "Port. Pontos", total: data.totalpt },
     {
       id: 4,
-      type: "E/A Português",
+      type: "Port. Acertos",
       rights: data.pt,
       wrongs: data.totalpt - data.pt,
     },
-    { id: 5, type: "T.P. Literatura", total: data.totallt },
+    { id: 5, type: "Liter. Pontos", total: data.totallt },
     {
       id: 6,
-      type: "E/A Literatura",
+      type: "Liter. Acertos",
       rights: data.lt,
       wrongs: data.totallt - data.lt,
     },
-    { id: 7, type: "T.P. História", total: data.totalht },
+    { id: 7, type: "Hist. Pontos", total: data.totalht },
     {
       id: 8,
-      type: "E/A História",
+      type: "Hist. Acertos",
       rights: data.ht,
       wrongs: data.totalht - data.ht,
     },
-    { id: 9, type: "T.P. Geografia", total: data.totalgg },
+    { id: 9, type: "Geog. Pontos", total: data.totalgg },
     {
       id: 10,
-      type: "E/A Geografia",
+      type: "Geog. Acertos",
       rights: data.gg,
       wrongs: data.totalgg - data.gg,
     },
-    { id: 11, type: "T.P. Filosofia", total: data.totalph },
+    { id: 11, type: "Filos. Pontos", total: data.totalph },
     {
       id: 12,
-      type: "E/A Filosofia",
+      type: "Filos. Acertos",
       rights: data.ph,
       wrongs: data.totalph - data.ph,
     },
-    { id: 13, type: "T.P. Sociologia", total: data.totalsc },
+    { id: 13, type: "Socio. Pontos", total: data.totalsc },
     {
       id: 14,
-      type: "E/A Sociologia",
+      type: "Socio. Acertos",
       rights: data.sc,
       wrongs: data.totalsc - data.sc,
     },
-    { id: 15, type: "T.P. Matemática", total: data.totalmt },
+    { id: 15, type: "Matem. Pontos", total: data.totalmt },
     {
       id: 16,
-      type: "E/A Matemática",
+      type: "Matem. Acertos",
       rights: data.mt,
       wrongs: data.totalmt - data.mt,
     },
-    { id: 17, type: "T.P. Física", total: data.totalpc },
+    { id: 17, type: "Física Pontos", total: data.totalpc },
     {
       id: 18,
-      type: "E/A Física",
+      type: "Física Acertos",
       rights: data.pc,
       wrongs: data.totalpc - data.pc,
     },
-    { id: 19, type: "T.P. Química", total: data.totalch },
+    { id: 19, type: "Química Pontos", total: data.totalch },
     {
       id: 20,
-      type: "E/A Química",
+      type: "Química Acertos",
       rights: data.ch,
       wrongs: data.totalch - data.ch,
     },
@@ -207,7 +205,7 @@ export function Profile() {
             )}
             {c.id % 2 === 0 && (
               <div className="flex items-center justify-center w-full h-[40%]">
-                {c.rights} / {c.wrongs}
+                {c.rights}
               </div>
             )}
           </div>

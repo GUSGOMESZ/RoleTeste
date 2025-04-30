@@ -45,10 +45,10 @@ async function getRightById(userId) {
   return data.right;
 }
 
-async function getTotalPointsById(userId) {
+async function getTotalPointsById(userId, sub) {
   const { data, error } = await supabase
     .from("stats")
-    .select("totalpt")
+    .select(sub)
     .eq("userid", userId)
     .single();
 
@@ -75,7 +75,7 @@ export async function createStat(userId) {
 }
 
 export async function getStat(userEmail) {
-  const currentUserId = getUserId(userEmail);
+  const currentUserId = await getUserId(userEmail);
 
   let query = supabase
     .from("stats")
@@ -147,17 +147,92 @@ export async function incrementRight(userEmail) {
   }
 }
 
-export async function incrementTotalPoints(userEmail, points) {
+export async function incrementTotalPortuguesePoints(userEmail, points) {
   const currentUserId = await getUserId(userEmail);
 
-  let totalpt = await getTotalPointsById(currentUserId);
+  let totalPoints = await getTotalPointsById(currentUserId, "totalpt");
 
-  totalpt += points;
+  totalPoints += points;
 
   try {
     const { data, error } = await supabase
       .from("stats")
-      .update({ totalpt: totalpt })
+      .update({ totalpt: totalPoints })
+      .eq("userid", currentUserId);
+
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    console.error("Erro ao atualizar estatísticas:", error);
+    return null;
+  }
+}
+
+export async function incrementPortuguese(userEmail) {
+  const currentUserId = await getUserId(userEmail);
+
+  const { data: ptResponse, error: ptError } = await supabase
+    .from("stats")
+    .select("pt")
+    .eq("userid", currentUserId)
+    .single();
+
+  if (ptError) console.error(ptError);
+
+  let qtt = ptResponse.pt + 1;
+
+  try {
+    const { data, error } = await supabase
+      .from("stats")
+      .update({ pt: qtt })
+      .eq("userid", currentUserId);
+
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    console.error("Erro ao atualizar estatísticas:", error);
+    return null;
+  }
+}
+
+export async function incrementTotalLiteraturePoints(userEmail, points) {
+  const currentUserId = await getUserId(userEmail);
+
+  let totalPoints = await getTotalPointsById(currentUserId, "totallt");
+
+  totalPoints += points;
+
+  try {
+    const { data, error } = await supabase
+      .from("stats")
+      .update({ totallt: totalPoints })
+      .eq("userid", currentUserId);
+
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    console.error("Erro ao atualizar estatísticas:", error);
+    return null;
+  }
+}
+
+export async function incrementLiterature(userEmail) {
+  const currentUserId = await getUserId(userEmail);
+
+  const { data: ltResponse, error: ptError } = await supabase
+    .from("stats")
+    .select("lt")
+    .eq("userid", currentUserId)
+    .single();
+
+  if (ptError) console.error(ptError);
+
+  let qtt = ltResponse.lt + 1;
+
+  try {
+    const { data, error } = await supabase
+      .from("stats")
+      .update({ lt: qtt })
       .eq("userid", currentUserId);
 
     if (error) throw error;

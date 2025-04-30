@@ -15,22 +15,14 @@ import {
 
 import "../../App.css";
 import {
+  incrementPortuguese,
   incrementRight,
-  incrementTotalPoints,
+  incrementTotalPortuguesePoints,
   incrementTotalStats,
 } from "../../Services/apiStats";
 
 // Set-ExecutionPolicy RemoteSigned –Scope Process
 // const spinTime = 3000;
-
-const logout = () => {
-  localStorage.removeItem("email");
-  // localStorage.removeItem("password");
-
-  navigate("/signin");
-
-  window.location.reload();
-};
 
 const findIndexByValue = (arr, value) =>
   arr.findIndex((item) => item.option === value);
@@ -89,7 +81,7 @@ export function Roulette() {
 
     setSelectedContent(possibleContent[randomIndex].option);
 
-    console.log(selectedContent);
+    console.log(activeButton);
 
     setTimeout(() => {
       setAble(true);
@@ -127,23 +119,35 @@ export function Roulette() {
   const [isWrong, setIsWrong] = useState(false);
 
   const verifyAnswer = async () => {
-    // console.log(selectedAnswer);
     setIsAsking(false);
 
     await incrementTotalStats(currentUser);
 
     if (selectedAnswer != randomQuestion.correctAnswer) {
-      console.log("errou");
+      // console.log("errou");
       setIsWrong(true);
     } else {
-      console.log("acertou");
+      // console.log("acertou");
       await incrementRight(currentUser);
 
+      console.log(activeButton);
+
+      await incrementPortuguese(currentUser);
+
       if (avaliablePoints !== 0)
-        await incrementTotalPoints(currentUser, avaliablePoints);
+        await incrementTotalPortuguesePoints(currentUser, avaliablePoints);
 
       setIsCorrect(true);
     }
+  };
+
+  const logout = () => {
+    localStorage.removeItem("email");
+    // localStorage.removeItem("password");
+
+    navigate("/signin");
+
+    window.location.reload();
   };
 
   return (
