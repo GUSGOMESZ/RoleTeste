@@ -13,6 +13,10 @@ import {
   portugueseSignatures,
 } from "../../Data/questions/portuguese/portuguese";
 
+import { FaUser } from "react-icons/fa";
+import { FaClipboardList } from "react-icons/fa";
+import { BiLogOut } from "react-icons/bi";
+
 import "../../App.css";
 import {
   incrementChemistry,
@@ -66,7 +70,7 @@ export function Roulette() {
 
   const [randomQuestion, setRandomQuestion] = useState({});
 
-  const [activeButton, setActiveButton] = useState("Português");
+  const [activeButton, setActiveButton] = useState("Portugues");
   const [wheelBgColor, setWheelBgColor] = useState("bg-sky-500");
   const [possibleContent, setPossibleContent] = useState(topics[0]);
   const [able, setAble] = useState(true);
@@ -201,10 +205,32 @@ export function Roulette() {
         }`}
       >
         <div className="flex flex-col w-1/2 h-full">
-          <div className="flex items-center w-full h-1/6 p-20">
-            <div className="font-bold text-7xl text-white">RoleTeste</div>
+          <div className="flex flex-row items-center w-full h-1/6">
+            <div className="flex h-full w-[50%] justify-center items-center">
+              <div className="font-bold text-7xl text-white">ROLETESTE</div>
+            </div>
+            <div className="flex h-full w-[50%] gap-10 justify-center items-center">
+              <button
+                onClick={() => navigate("/profile")}
+                className="flex justify-center items-center rounded-xl w-12 h-12 bg-white hover:bg-slate-400"
+              >
+                <FaUser />
+              </button>
+              <button
+                onClick={() => navigate("/ranking")}
+                className="flex justify-center items-center rounded-xl w-12 h-12 bg-white hover:bg-slate-400"
+              >
+                <FaClipboardList />
+              </button>
+              <button
+                onClick={logout}
+                className="flex justify-center items-center rounded-xl w-12 h-12 bg-white hover:bg-slate-400"
+              >
+                <BiLogOut />
+              </button>
+            </div>
           </div>
-          <div className="w-full h-4/6 p-3 pl-10 pr-10 pt-0 gap-5">
+          <div className="flex flex-col items-center w-full h-5/6 gap-3 px-5 pt-5">
             {Subjects.map((sub, index) => (
               <SubjectButton
                 key={sub}
@@ -215,38 +241,6 @@ export function Roulette() {
                 isAble={able}
               />
             ))}
-          </div>
-          <div className="flex flex-row w-full h-1/6 bg-slate-500">
-            <div className="w-[50%] h-full bg-indigo-200 p-5">
-              <div className="flex justify-center items-center w-full h-full border-2 border-black">
-                <button
-                  onClick={() => navigate("/profile")}
-                  className="border-1 border-black p-3 hover:bg-indigo-400"
-                >
-                  {currentUser}
-                </button>
-              </div>
-            </div>
-            <div className="w-[25%] h-full bg-indigo-200 p-5">
-              <div className="flex justify-center items-center w-full h-full border-2 border-black">
-                <button
-                  onClick={() => navigate("/ranking")}
-                  className="border-1 border-black p-3 hover:bg-indigo-400"
-                >
-                  Placar De Líderes
-                </button>
-              </div>
-            </div>
-            <div className="w-[25%] h-full bg-indigo-200 p-5">
-              <div className="flex justify-center items-center w-full h-full border-2 border-black">
-                <button
-                  onClick={logout}
-                  className="border-1 border-black p-3 hover:bg-indigo-400"
-                >
-                  Sair
-                </button>
-              </div>
-            </div>
           </div>
         </div>
         <div
