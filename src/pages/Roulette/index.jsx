@@ -15,9 +15,25 @@ import {
 
 import "../../App.css";
 import {
+  incrementChemistry,
+  incrementGeography,
+  incrementHistory,
+  incrementLiterature,
+  incrementMath,
+  incrementPhilosophy,
+  incrementPhisics,
   incrementPortuguese,
   incrementRight,
+  incrementSociology,
+  incrementTotalChemistryPoints,
+  incrementTotalGeographyPoints,
+  incrementTotalHistoryPoints,
+  incrementTotalLiteraturePoints,
+  incrementTotalMathPoints,
+  incrementTotalPhilosophyPoints,
+  incrementTotalPhisicsPoints,
   incrementTotalPortuguesePoints,
+  incrementTotalSociologyPoints,
   incrementTotalStats,
 } from "../../Services/apiStats";
 
@@ -97,6 +113,7 @@ export function Roulette() {
 
     const temp = getRandomObject(questionsArray);
 
+    // setRandomQuestion(temp);
     setRandomQuestion(template);
 
     setIsConfirming(false);
@@ -132,10 +149,36 @@ export function Roulette() {
 
       console.log(activeButton);
 
-      await incrementPortuguese(currentUser);
+      if (activeButton === "Portugues") await incrementPortuguese(currentUser);
+      if (activeButton === "Literatura") await incrementLiterature(currentUser);
+      if (activeButton === "Historia") await incrementHistory(currentUser);
+      if (activeButton === "Geografia") await incrementGeography(currentUser);
+      if (activeButton === "Filosofia") await incrementPhilosophy(currentUser);
+      if (activeButton === "Sociologia") await incrementSociology(currentUser);
+      if (activeButton === "Matematica") await incrementMath(currentUser);
+      if (activeButton === "Fisica") await incrementPhisics(currentUser);
+      if (activeButton === "Quimica") await incrementChemistry(currentUser);
 
-      if (avaliablePoints !== 0)
-        await incrementTotalPortuguesePoints(currentUser, avaliablePoints);
+      if (avaliablePoints !== 0) {
+        if (activeButton === "Portugues")
+          await incrementTotalPortuguesePoints(currentUser, avaliablePoints);
+        if (activeButton === "Literatura")
+          await incrementTotalLiteraturePoints(currentUser, avaliablePoints);
+        if (activeButton === "Historia")
+          await incrementTotalHistoryPoints(currentUser, avaliablePoints);
+        if (activeButton === "Geografia")
+          await incrementTotalGeographyPoints(currentUser, avaliablePoints);
+        if (activeButton === "Filosofia")
+          await incrementTotalPhilosophyPoints(currentUser, avaliablePoints);
+        if (activeButton === "Sociologia")
+          await incrementTotalSociologyPoints(currentUser, avaliablePoints);
+        if (activeButton === "Matematica")
+          await incrementTotalMathPoints(currentUser, avaliablePoints);
+        if (activeButton === "Fisica")
+          await incrementTotalPhisicsPoints(currentUser, avaliablePoints);
+        if (activeButton === "Quimica")
+          await incrementTotalChemistryPoints(currentUser, avaliablePoints);
+      }
 
       setIsCorrect(true);
     }
