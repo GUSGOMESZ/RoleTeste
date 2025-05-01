@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getStat } from "../../Services/apiStats";
-import { useEffect } from "react";
 import {
   Cell,
   Legend,
@@ -11,28 +10,43 @@ import {
 } from "recharts";
 import styled from "styled-components";
 import { SubjectsGraph } from "../../Components/SubjectsGraph";
+import { FaArrowLeft } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const ChartBox = styled.div`
-  background-color: var(--color-grey-0);
-  border: 1px solid var(--color-grey-100);
-  border-radius: var(--border-radius-md);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 
-  padding: 2.4rem 3.2rem;
-  grid-column: span 2;
-
-  & > *:first-child {
-    margin-bottom: 1.6rem;
-  }
-
-  & .recharts-pie-label-text {
-    font-weight: 600;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
   }
 `;
 
+const COLORS = [
+  "#3B82F6",
+  "#10B981",
+  "#F59E0B",
+  "#EF4444",
+  "#8B5CF6",
+  "#EC4899",
+  "#14B8A6",
+  "#F97316",
+  "#64748B",
+  "#8B5CF6",
+];
+
 export function Profile() {
   const currentUser = localStorage.getItem("email");
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
 
+  // ... (mantenha o useEffect e funções de formatação originais)
   useEffect(() => {
     const fetchData = async () => {
       const response = await getStat(currentUser);
@@ -186,99 +200,129 @@ export function Profile() {
   }
 
   return (
-    <div className="flex flex-col w-screen h-screen overflow-hidden inset-0 bg-black">
-      <div className="flex items-center p-20 w-full h-[20%] bg-black">
-        <div className="text-4xl font-bold text-sky-100 uppercase">
-          {currentUser}
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 overflow-hidden">
+      {/* Header Section */}
+      <div className="relative px-8 py-12">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 pattern-dots pattern-gray-800 pattern-size-4 pattern-opacity-20" />
+
+        <div className="relative z-10 text-center">
+          <button
+            onClick={() => navigate("/roulette")}
+            className="absolute left-8 top-12 p-3 rounded-full bg-gray-800/50 hover:bg-gray-700/80 transition-all group"
+          >
+            <FaArrowLeft className="w-6 h-6 text-blue-400 group-hover:text-purple-300 transition-colors" />
+          </button>
+
+          <h1 className="h-15 text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-300 bg-clip-text text-transparent mb-4">
+            {currentUser}
+          </h1>
+          <p className="text-gray-300 text-lg">Estatísticas de Desempenho</p>
         </div>
       </div>
-      <div className="w-full h-[30%] grid grid-flow-col grid-rows-2 p-5 gap-5 bg-black border-slate-100 border-t-3">
+
+      {/* Stats Grid */}
+      <div className="grid grid-cols-5 gap-4 px-8 pb-8 mt-4">
         {content.map((c) => (
-          <div key={c.id} className="w-5xs rounded-lg h-auto bg-slate-50">
-            <div className="flex items-center justify-center w-auto h-[60%]">
-              {c.type}
+          <div
+            key={c.id}
+            className="p-4 rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-blue-400 transition-all"
+          >
+            <div className="text-sm text-gray-400 mb-2">{c.type}</div>
+            <div className="text-2xl font-bold text-blue-400">
+              {c.id % 2 !== 0 ? c.total : c.rights}
             </div>
-            {c.id % 2 !== 0 && (
-              <div className="flex items-center justify-center w-full h-[40%]">
-                {c.total}
-              </div>
-            )}
-            {c.id % 2 === 0 && (
-              <div className="flex items-center justify-center w-full h-[40%]">
-                {c.rights}
-              </div>
-            )}
           </div>
         ))}
       </div>
-      <div className="flex flex-row w-full h-[50%] place-content-around bg-black border-slate-100 border-t-3">
-        <div className="w-[30%] h-full border-slate-100 border-3 bg-slate-500">
-          <ChartBox>
-            <h2>Tabela</h2>
-            <ResponsiveContainer width="120%" height={240}>
-              <PieChart>
-                <Pie
-                  data={formatSubjectGraphData()}
-                  nameKey="type"
-                  dataKey="percentage"
-                  innerRadius={85}
-                  outerRadius={110}
-                  cx="40%"
-                  cy="50%"
-                  paddingAngle={3}
-                >
-                  {formatSubjectGraphData().map((sub) => (
-                    <Cell fill={sub.color} stroke={sub.color} key={sub.type} />
-                  ))}
-                </Pie>
-                <Tooltip />
-                <Legend
-                  verticalAlign="middle"
-                  align="right"
-                  width="35%"
-                  layout="vertical"
-                  iconSize={15}
-                  iconType="circle"
-                />
-              </PieChart>
-            </ResponsiveContainer>
-          </ChartBox>
-        </div>
-        <div className="w-[30%] h-full border-slate-100 border-3 bg-slate-500">
-          <ChartBox>
-            <h2>Tabela</h2>
-            <ResponsiveContainer width="120%" height={240}>
-              <PieChart>
-                <Pie
-                  data={formatRightsWrongData()}
-                  nameKey="type"
-                  dataKey="percentage"
-                  innerRadius={85}
-                  outerRadius={110}
-                  cx="40%"
-                  cy="50%"
-                  paddingAngle={3}
-                >
-                  {formatRightsWrongData().map((sub) => (
-                    <Cell fill={sub.color} stroke={sub.color} key={sub.type} />
-                  ))}
-                </Pie>
-                <Tooltip />
-                <Legend
-                  verticalAlign="middle"
-                  align="right"
-                  width="35%"
-                  layout="vertical"
-                  iconSize={15}
-                  iconType="circle"
-                />
-              </PieChart>
-            </ResponsiveContainer>
-          </ChartBox>
-        </div>
-        <div className="flex justify-center items-center w-[30%] h-full bg-slate-100 border-slate-100">
-          <SubjectsGraph stats={data} />
-        </div>
+
+      {/* Charts Section */}
+      <div className="flex flex-wrap justify-center gap-8 px-8 pb-12">
+        {/* Subjects Distribution Pie Chart */}
+        <ChartBox className="w-full max-w-2xl">
+          <h3 className="text-xl font-semibold text-gray-200 mb-4">
+            Distribuição por Matéria
+          </h3>
+          <ResponsiveContainer width="100%" height={400}>
+            <PieChart>
+              <Pie
+                data={formatSubjectGraphData()}
+                nameKey="type"
+                dataKey="percentage"
+                innerRadius="60%"
+                outerRadius="80%"
+                paddingAngle={5}
+              >
+                {formatSubjectGraphData().map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <Tooltip
+                contentStyle={{
+                  background: "rgba(0, 0, 0, 0.8)",
+                  border: "1px solid rgba(255, 255, 255, 0.1)",
+                  borderRadius: "8px",
+                }}
+              />
+              <Legend
+                layout="vertical"
+                align="right"
+                verticalAlign="middle"
+                wrapperStyle={{ color: "#fff" }}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+        </ChartBox>
+
+        {/* Performance Pie Chart */}
+        <ChartBox className="w-full max-w-lg">
+          <h3 className="text-xl font-semibold text-gray-200 mb-4">
+            Desempenho Geral
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie
+                data={formatRightsWrongData()}
+                dataKey="percentage"
+                innerRadius="60%"
+                outerRadius="80%"
+                paddingAngle={5}
+              >
+                {formatRightsWrongData().map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={index === 0 ? "#10B981" : "#EF4444"}
+                  />
+                ))}
+              </Pie>
+              <Tooltip
+                contentStyle={{
+                  background: "rgba(0, 0, 0, 0.8)",
+                  border: "1px solid rgba(255, 255, 255, 0.1)",
+                  borderRadius: "8px",
+                }}
+              />
+              <Legend
+                layout="vertical"
+                align="right"
+                verticalAlign="middle"
+                wrapperStyle={{ color: "#fff" }}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+        </ChartBox>
+
+        {/* Additional Graph */}
+        <ChartBox className="w-full max-w-3xl">
+          <h3 className="text-xl font-semibold text-gray-200 mb-4">
+            Progresso Detalhado
+          </h3>
+          <div className="h-80">
+            <SubjectsGraph stats={data} />
+          </div>
+        </ChartBox>
       </div>
     </div>
   );

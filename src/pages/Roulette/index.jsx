@@ -3,7 +3,7 @@ import Topics from "../../Data/topics";
 import SubjectButton from "../../Components/SubjectButton";
 import RouletteHalf from "../../Components/RoulleteHalf";
 import translate from "../../Helpers/translate";
-import getColor from "../../Helpers/colors";
+import { getBackgroundColor } from "../../Helpers/colors";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -87,7 +87,7 @@ export function Roulette() {
   const handleButtonClick = (subject, index) => {
     setActiveButton(subject);
     setData(topics[index]);
-    setWheelBgColor(getColor(subject));
+    setWheelBgColor(getBackgroundColor(subject));
     setPossibleContent(topics[index]);
   };
 
@@ -200,31 +200,44 @@ export function Roulette() {
   return (
     <>
       <div
-        className={`flex flex-row w-screen h-screen overflow-hidden inset-0 bg-black ${
+        className={`flex flex-row w-screen h-screen overflow-hidden inset-0 bg-gradient-to-br from-gray-900 to-gray-800 ${
           isConfirming || isAsking ? "opacity-70" : ""
         }`}
       >
         <div className="flex flex-col w-1/2 h-full">
           <div className="flex flex-row items-center w-full h-1/6">
             <div className="flex h-full w-[50%] justify-center items-center">
-              <div className="font-bold text-7xl text-white">ROLETESTE</div>
+              <button disabled={true} onClick={() => navigate("/roulette")}>
+                <div className="font-bold text-7xl text-rose-50 hover:text-slate-300">
+                  ROLETESTE
+                </div>
+              </button>
             </div>
             <div className="flex h-full w-[50%] gap-10 justify-center items-center">
               <button
+                disabled={!able}
                 onClick={() => navigate("/profile")}
-                className="flex justify-center items-center rounded-xl w-12 h-12 bg-white hover:bg-slate-400"
+                className={`flex justify-center items-center rounded-xl w-12 h-12 bg-rose-50 hover:bg-slate-300 hover:scale-110 active:scale-95 transition-all duration-500 ${
+                  able ? "" : "cursor-not-allowed"
+                }`}
               >
                 <FaUser />
               </button>
               <button
+                disabled={!able}
                 onClick={() => navigate("/ranking")}
-                className="flex justify-center items-center rounded-xl w-12 h-12 bg-white hover:bg-slate-400"
+                className={`flex justify-center items-center rounded-xl w-12 h-12 bg-rose-50 hover:bg-slate-300 hover:scale-110 active:scale-95 transition-all duration-500 ${
+                  able ? "" : "cursor-not-allowed"
+                }`}
               >
                 <FaClipboardList />
               </button>
               <button
+                disabled={!able}
                 onClick={logout}
-                className="flex justify-center items-center rounded-xl w-12 h-12 bg-white hover:bg-slate-400"
+                className={`flex justify-center items-center rounded-xl w-12 h-12 bg-rose-50 hover:bg-slate-300 hover:scale-110 active:scale-95 transition-all duration-500 ${
+                  able ? "" : "cursor-not-allowed"
+                }`}
               >
                 <BiLogOut />
               </button>
@@ -244,7 +257,7 @@ export function Roulette() {
           </div>
         </div>
         <div
-          className={`w-1/2 h-full ${wheelBgColor} transition-all duration-500`}
+          className={`w-1/2 h-full ${wheelBgColor} transition-all duration-500 opacity-90`}
         >
           <div className="flex flex-col items-center justify-around w-full h-full">
             <RouletteHalf
@@ -257,10 +270,33 @@ export function Roulette() {
             >
               <button
                 onClick={handleSpin}
-                className="p-3 border-2 border-black"
                 disabled={!able}
+                className={`relative px-8 py-4 text-2xl font-bold transition-all duration-300 ${
+                  able
+                    ? "bg-gradient-to-br from-neutral-900 to-neutral-900 hover:from-neutral-900 hover:to-neutral-900 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+                    : "bg-gray-400 opacity-50 cursor-not-allowed"
+                } rounded-2xl text-white group`}
               >
-                Spin
+                <div className="absolute inset-0 rounded-2xl bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                <span className="bg-gradient-to-b from-white to-gray-200 bg-clip-text text-transparent">
+                  GIRAR ROLETA
+                </span>
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-8 w-8 ml-3 inline-block group-hover:rotate-180 transition-transform duration-300"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  />
+                </svg>
               </button>
             </RouletteHalf>
           </div>
