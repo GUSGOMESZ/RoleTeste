@@ -1,112 +1,69 @@
 const literatureSignatures = {
-  0: "Interpretação Literária",
-  1: "Figuras de Linguagens",
-  2: "Autores e Obras",
-  3: "Escolas Literárias",
+  0: "Figuras de Linguagens",
+  1: "Autores e Obras",
+  2: "Escolas Literárias",
+  3: "Interpretação Literária",
 };
 
 const literature = [
+  // Figuras de Linguagens (0)
   [
     {
-      text: "'No meio do caminho tinha uma pedra\ntinha uma pedra no meio do caminho\n(...)\nNunca me esquecerei desse acontecimento\nna vida de minhas retinas tão fatigadas'. (Carlos Drummond de Andrade). A qual movimento literário pertence o poema acima, considerando suas características formais e temáticas?'",
-      options: ["Romantismo", "Realismo", "Modernismo", "Naturalismo"],
-      correctAnswer: 2,
-      dicas: [
-        "Resumo do conteudo",
-        "Link da videoaula",
-        "A resposta eh a opcao C.",
-      ],
+      text: "Qual figura de linguagem predomina no trecho: 'O tempo é um rio que arrasta tudo'?",
+      options: ["Metáfora", "Hipérbole", "Personificação", "Ironia"],
+      correctAnswer: 0,
+      dicas: [],
     },
     {
-      text: "'Amor é fogo que arde sem se ver; É ferida que dói e não se sente; É um contentamento descontente; É dor que desatina sem doer'. (Luís de Camões, Sonetos). Qual é o principal recurso estilístico utilizado por Camões para definir o amor nesse soneto ?",
-      options: ["Metáfora", "Hipérbole", "Ironia", "Onomatopeia"],
+      text: "No verso 'As estrelas piscavam no céu como olhos curiosos', qual figura de linguagem é utilizada?",
+      options: ["Comparação", "Metonímia", "Antítese", "Eufemismo"],
       correctAnswer: 0,
-      dicas: [
-        "Resumo do conteudo",
-        "Link da videoaula",
-        "A resposta eh a opcao A.",
-      ],
+      dicas: [],
     },
   ],
+  // Autores e Obras (1)
   [
     {
-      text: "'Meu pensamento é um rio subterrâneo'. (Fernando Pessoa). A figura de linguagem presente no verso de Fernando Pessoa é:",
-      options: ["Hipérbole", "Metonímia", "Metáfora", "Comparação"],
+      text: "Quem escreveu 'Macunaíma', obra conhecida como 'rapsódia da identidade nacional'?",
+      options: ["Machado de Assis", "Graciliano Ramos", "Mário de Andrade", "Clarice Lispector"],
       correctAnswer: 2,
-      dicas: [
-        "Resumo do conteudo",
-        "Link da videoaula",
-        "A resposta eh a opcao C.",
-      ],
+      dicas: [],
     },
     {
-      text: "'A lua, tímida, escondia-se atrás das nuvens.'. Qual figura de linguagem é utilizada no trecho acima?",
-      options: ["Antítese", "Personificação", "Eufemismo", "Aliteração"],
+      text: "Qual autor do Romantismo brasileiro escreveu 'Iracema', romance indianista?",
+      options: ["Aluísio Azevedo", "José de Alencar", "Castro Alves", "Manuel Antônio de Almeida"],
       correctAnswer: 1,
-      dicas: [
-        "Resumo do conteudo",
-        "Link da videoaula",
-        "A resposta eh a opcao A.",
-      ],
+      dicas: [],
     },
   ],
+  // Escolas Literárias (2)
   [
     {
-      text: "Qual autor é considerado um dos principais nomes da primeira geração do Modernismo brasileiro e escreveu Macunaíma, obra conhecida como 'rapsódia da identidade nacional'?",
-      options: [
-        "Carlos Drummond de Andrade",
-        "Graciliano Ramos",
-        "Mário de Andrade",
-        "Clarice Lispector",
-      ],
-      correctAnswer: 2,
-      dicas: [
-        "Resumo do conteudo",
-        "Link da videoaula",
-        "A resposta eh a opcao C.",
-      ],
+      text: "Qual característica é marcante do Realismo literário?",
+      options: ["Idealização da natureza", "Crítica social e análise psicológica", "Linguagem rebuscada e metafórica", "Temas mitológicos"],
+      correctAnswer: 1,
+      dicas: [],
     },
     {
-      text: "José de Alencar, autor de Iracema e O Guarani, é associado a qual vertente do Romantismo brasileiro?",
-      options: ["Indianismo", "Ultrarromantismo", "Parnasianismo", "Realismo"],
+      text: "Gregório de Matos, conhecido por sua poesia satírica, pertence a qual escola literária?",
+      options: ["Barroco", "Arcadismo", "Romantismo", "Modernismo"],
       correctAnswer: 0,
-      dicas: [
-        "Resumo do conteudo",
-        "Link da videoaula",
-        "A resposta eh a opcao A.",
-      ],
+      dicas: [],
     },
   ],
+  // Interpretação Literária (3)
   [
     {
-      text: "Qual característica NÃO está associada ao Realismo do século XIX?",
-      options: [
-        "Linguagem objetiva e crítica social",
-        "Valorização da razão e da ciência",
-        "Idealização da mulher e do amor",
-        "Análise psicológica dos personagens",
-      ],
-      correctAnswer: 2,
-      dicas: [
-        "Resumo do conteudo",
-        "Link da videoaula",
-        "A resposta eh a opcao C.",
-      ],
+      text: "No poema 'No meio do caminho' de Drummond, a 'pedra' simboliza:",
+      options: ["Um obstáculo existencial", "Um objeto real na estrada", "Uma referência religiosa", "Um animal perigoso"],
+      correctAnswer: 0,
+      dicas: [],
     },
     {
-      text: "Qual trecho abaixo é representativo do Barroco brasileiro?",
-      options: [
-        "'Os bons vi sempre passar / No mundo graves tormentos.' (Gregório de Matos)",
-        "'Minha terra tem palmeiras, / Onde canta o Sabiá.' (Gonçalves Dias)",
-        "'Vamos, disse ela, a luz se extingue / E o dia vem depois da noite.' (Castro Alves)",
-        "'No meio do caminho tinha uma pedra / Tinha uma pedra no meio do caminho.' (Drummond)",
-      ],
-      correctAnswer: 0,
-      dicas: [
-        "Resumo do conteudo",
-        "Link da videoaula",
-        "A resposta eh a opcao A.",
-      ],
+      text: "No soneto 'Amor é fogo que arde sem se ver', de Camões, qual é o tema central?",
+      options: ["A natureza efêmera da vida", "A contradição do amor", "A glorificação da guerra", "A descrição de uma paisagem"],
+      correctAnswer: 1,
+      dicas: [],
     },
   ],
 ];

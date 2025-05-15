@@ -18,6 +18,41 @@ import {
   literatureSignatures,
 } from "../../Data/questions/literature/literature";
 
+import {
+  history,
+  historySignatures,
+} from "../../Data/questions/history/history"
+
+import {
+  geography,
+  geographySignatures
+} from "../../Data/questions/geography/geography";
+
+import {
+  philosophy,
+  philosophySignatures
+} from "../../Data/questions/philosophy/philosophy";
+
+import {
+  sociology,
+  sociologySignatures
+} from "../../Data/questions/sociology/sociology";
+
+import {
+  math,
+  mathSignatures
+} from "../../Data/questions/math/math";
+
+import {
+  physics,
+  physicsSignatures
+} from "../../Data/questions/physics/physics";
+
+import {
+  chemistry,
+  chemistrySignatures
+} from "../../Data/questions/chemistry/chemistry";
+
 import { FaUser } from "react-icons/fa";
 import { FaClipboardList } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
@@ -129,6 +164,13 @@ export function Roulette() {
 
     if (activeButton === "Portugues") questionsArray = portuguese[selectedKey];
     if (activeButton === "Literatura") questionsArray = literature[selectedKey];
+    if (activeButton === "Historia") questionsArray = history[selectedKey];
+    if (activeButton === "Geografia") questionsArray = geography[selectedKey];
+    if (activeButton === "Filosofia") questionsArray = philosophy[selectedKey];
+    if (activeButton === "Sociologia") questionsArray = sociology[selectedKey];
+    if (activeButton === "Matematica") questionsArray = math[selectedKey];
+    if (activeButton === "Fisica") questionsArray = physics[selectedKey];
+    if (activeButton === "Quimica") questionsArray = chemistry[selectedKey];
 
     const temp = getRandomObject(questionsArray);
 
@@ -155,6 +197,7 @@ export function Roulette() {
   const [isWrong, setIsWrong] = useState(false);
 
   const verifyAnswer = async () => {
+    setSelectedAnswer(null);
     setIsAsking(false);
 
     await incrementTotalStats(currentUser);

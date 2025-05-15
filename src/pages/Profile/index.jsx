@@ -44,9 +44,8 @@ const COLORS = [
 export function Profile() {
   const currentUser = localStorage.getItem("email");
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
 
-  // ... (mantenha o useEffect e funções de formatação originais)
   useEffect(() => {
     const fetchData = async () => {
       const response = await getStat(currentUser);
@@ -58,73 +57,73 @@ export function Profile() {
   }, [currentUser]);
 
   const content = [
-    { id: 1, type: "Total Perguntas", total: data.total },
+    { id: 1, type: "Total de Perguntas Respondidas", total: data.total },
     {
       id: 2,
-      type: "Acertos/Erros",
+      type: "Acertos Totais",
       rights: data.right,
       wrongs: data.total - data.right,
     },
-    { id: 3, type: "Port. Pontos", total: data.totalpt },
+    { id: 3, type: "Pontos em Português", total: data.totalpt },
     {
       id: 4,
-      type: "Port. Acertos",
+      type: "Acertos em Português",
       rights: data.pt,
       wrongs: data.totalpt - data.pt,
     },
-    { id: 5, type: "Liter. Pontos", total: data.totallt },
+    { id: 5, type: "Pontos em Literatura", total: data.totallt },
     {
       id: 6,
-      type: "Liter. Acertos",
+      type: "Acertos em Literatura",
       rights: data.lt,
       wrongs: data.totallt - data.lt,
     },
-    { id: 7, type: "Hist. Pontos", total: data.totalht },
+    { id: 7, type: "Pontos em História", total: data.totalht },
     {
       id: 8,
-      type: "Hist. Acertos",
+      type: "Acertos em História",
       rights: data.ht,
       wrongs: data.totalht - data.ht,
     },
-    { id: 9, type: "Geog. Pontos", total: data.totalgg },
+    { id: 9, type: "Pontos em Geografia", total: data.totalgg },
     {
       id: 10,
-      type: "Geog. Acertos",
+      type: "Acertos em Geografia",
       rights: data.gg,
       wrongs: data.totalgg - data.gg,
     },
-    { id: 11, type: "Filos. Pontos", total: data.totalph },
+    { id: 11, type: "Pontos em Filosofia", total: data.totalph },
     {
       id: 12,
-      type: "Filos. Acertos",
+      type: "Acertos em Filosofia",
       rights: data.ph,
       wrongs: data.totalph - data.ph,
     },
-    { id: 13, type: "Socio. Pontos", total: data.totalsc },
+    { id: 13, type: "Pontos em Sociologia", total: data.totalsc },
     {
       id: 14,
-      type: "Socio. Acertos",
+      type: "Acertos em Sociologia",
       rights: data.sc,
       wrongs: data.totalsc - data.sc,
     },
-    { id: 15, type: "Matem. Pontos", total: data.totalmt },
+    { id: 15, type: "Pontos em Matemática", total: data.totalmt },
     {
       id: 16,
-      type: "Matem. Acertos",
+      type: "Acertos em Matemática",
       rights: data.mt,
       wrongs: data.totalmt - data.mt,
     },
-    { id: 17, type: "Física Pontos", total: data.totalpc },
+    { id: 17, type: "Pontos em Física", total: data.totalpc },
     {
       id: 18,
-      type: "Física Acertos",
+      type: "Acertos em Física",
       rights: data.pc,
       wrongs: data.totalpc - data.pc,
     },
-    { id: 19, type: "Química Pontos", total: data.totalch },
+    { id: 19, type: "Pontos em Química", total: data.totalch },
     {
       id: 20,
-      type: "Química Acertos",
+      type: "Acertos em Química",
       rights: data.ch,
       wrongs: data.totalch - data.ch,
     },
@@ -159,22 +158,22 @@ export function Profile() {
       },
       {
         type: "Sociologia",
-        percentage: Math.round((data.totalph / data.total) * 100),
+        percentage: Math.round((data.totalsc / data.total) * 100),
         color: "var(--color-pink-100)",
       },
       {
         type: "Matemática",
-        percentage: Math.round((data.totalph / data.total) * 100),
+        percentage: Math.round((data.totalmt / data.total) * 100),
         color: "var(--color-indigo-700)",
       },
       {
         type: "Física",
-        percentage: Math.round((data.totalph / data.total) * 100),
+        percentage: Math.round((data.totalpc / data.total) * 100),
         color: "var(--color-green-100)",
       },
       {
         type: "Química",
-        percentage: Math.round((data.totalph / data.total) * 100),
+        percentage: Math.round((data.totalch / data.total) * 100),
         color: "var(--color-red-700)",
       },
     ];
@@ -264,6 +263,7 @@ export function Profile() {
                   background: "rgba(0, 0, 0, 0.8)",
                   border: "1px solid rgba(255, 255, 255, 0.1)",
                   borderRadius: "8px",
+                  text: "white"
                 }}
               />
               <Legend
@@ -281,7 +281,7 @@ export function Profile() {
           <h3 className="text-xl font-semibold text-gray-200 mb-4">
             Desempenho Geral
           </h3>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={400}>
             <PieChart>
               <Pie
                 data={formatRightsWrongData()}
@@ -298,11 +298,15 @@ export function Profile() {
                 ))}
               </Pie>
               <Tooltip
-                contentStyle={{
-                  background: "rgba(0, 0, 0, 0.8)",
-                  border: "1px solid rgba(255, 255, 255, 0.1)",
-                  borderRadius: "8px",
-                }}
+                content={({ payload }) => (
+                  <div className="bg-gray-800 p-2 rounded border border-gray-700">
+                    {payload.map((entry) => (
+                      <p key={entry.name} className="text-sm text-white">
+                        {entry.name}: {entry.value}%
+                      </p>
+                    ))}
+                  </div>
+                )}
               />
               <Legend
                 layout="vertical"
