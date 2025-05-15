@@ -21,36 +21,33 @@ import {
 import {
   history,
   historySignatures,
-} from "../../Data/questions/history/history"
+} from "../../Data/questions/history/history";
 
 import {
   geography,
-  geographySignatures
+  geographySignatures,
 } from "../../Data/questions/geography/geography";
 
 import {
   philosophy,
-  philosophySignatures
+  philosophySignatures,
 } from "../../Data/questions/philosophy/philosophy";
 
 import {
   sociology,
-  sociologySignatures
+  sociologySignatures,
 } from "../../Data/questions/sociology/sociology";
 
-import {
-  math,
-  mathSignatures
-} from "../../Data/questions/math/math";
+import { math, mathSignatures } from "../../Data/questions/math/math";
 
 import {
   physics,
-  physicsSignatures
+  physicsSignatures,
 } from "../../Data/questions/physics/physics";
 
 import {
   chemistry,
-  chemistrySignatures
+  chemistrySignatures,
 } from "../../Data/questions/chemistry/chemistry";
 
 import { FaUser } from "react-icons/fa";
@@ -491,7 +488,7 @@ export function Roulette() {
                       <div className="p-4 bg-white border-t border-emerald-100">
                         <p className="text-slate-700">
                           {/* Exemplo de conteúdo de dica */}
-                          {["Dica 1", "Dica 2", "Dica 3"][hintIndex - 1]}
+                          {randomQuestion.dicas[hintIndex - 1]}
                         </p>
                       </div>
                     )}

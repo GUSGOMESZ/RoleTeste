@@ -1,26 +1,21 @@
 const physicsSignatures = {
-    0: "Mecânica",
-    1: "Termodinâmica",
-    2: "Óptica",
-    3: "Eletromagnetismo",
+  0: "Mecânica",
+  1: "Termodinâmica",
+  2: "Óptica",
+  3: "Eletromagnetismo",
 };
 
 const physics = [
-  // Mecânica
+  // Mecânica (0)
   [
     {
       text: "Qual é a segunda lei de Newton, que relaciona força, massa e aceleração?",
-      options: [
-        "F = m / a",
-        "F = m * a",
-        "F = a / m",
-        "F = m + a",
-      ],
+      options: ["F = m / a", "F = m * a", "F = a / m", "F = m + a"],
       correctAnswer: 1,
       dicas: [
-        "Resumo do conteúdo",
-        "Link da videoaula",
-        "A resposta é a opção B."
+        "A força resultante é igual à massa multiplicada pela aceleração.",
+        "Dica: Se um objeto de 2 kg tem aceleração de 3 m/s², a força é 6 N.",
+        "A resposta correta é a opção B (F = m * a).",
       ],
     },
     {
@@ -33,14 +28,14 @@ const physics = [
       ],
       correctAnswer: 2,
       dicas: [
-        "Resumo do conteúdo",
-        "Link da videoaula",
-        "A resposta é a opção C."
+        "Responsável por alterar a direção da velocidade, mantendo o movimento circular.",
+        "Dica: Presente em planetas orbitando estrelas ou carros em curvas.",
+        "A resposta correta é a opção C (Aceleração centrípeta).",
       ],
     },
   ],
 
-  // Termodinâmica
+  // Termodinâmica (1)
   [
     {
       text: "Qual enunciado corresponde à primeira lei da termodinâmica?",
@@ -52,9 +47,9 @@ const physics = [
       ],
       correctAnswer: 0,
       dicas: [
-        "Resumo do conteúdo",
-        "Link da videoaula",
-        "A resposta é a opção A."
+        "Lei da conservação da energia: ΔU = Q - W.",
+        "Dica: Em um motor, parte do calor é convertida em trabalho.",
+        "A resposta correta é a opção A.",
       ],
     },
     {
@@ -67,48 +62,43 @@ const physics = [
       ],
       correctAnswer: 2,
       dicas: [
-        "Resumo do conteúdo",
-        "Link da videoaula",
-        "A resposta é a opção C."
+        "Ciclo teórico com máxima eficiência termodinâmica.",
+        "Dica: Combina expansão/compressão isotérmica e adiabática.",
+        "A resposta correta é a opção C (processos reversíveis).",
       ],
     },
   ],
 
-  // Óptica
+  // Óptica (2)
   [
     {
       text: "Qual fenômeno óptico explica a separação da luz branca nos diferentes comprimentos de onda ao passar por um prisma?",
-      options: [
-        "Reflexão",
-        "Difração",
-        "Dispersão",
-        "Interferência",
-      ],
+      options: ["Reflexão", "Difração", "Dispersão", "Interferência"],
       correctAnswer: 2,
       dicas: [
-        "Resumo do conteúdo",
-        "Link da videoaula",
-        "A resposta é a opção C."
+        "Ocorre porque cada cor tem um índice de refração diferente no prisma.",
+        "Dica: É o mesmo fenômeno que forma o arco-íris.",
+        "A resposta correta é a opção C (Dispersão).",
       ],
     },
     {
       text: "Qual é a relação entre os ângulos de incidência e refração ao passar de um meio para outro, segundo a lei de Snell?",
       options: [
-        "n1 * sen(i) = n2 * sen(r)",
-        "n1 / sen(i) = n2 / sen(r)",
+        "n₁ * sen(i) = n₂ * sen(r)",
+        "n₁ / sen(i) = n₂ / sen(r)",
         "sen(i) = sen(r)",
-        "n1 * sen(r) = n2 * sen(i)",
+        "n₁ * sen(r) = n₂ * sen(i)",
       ],
       correctAnswer: 0,
       dicas: [
-        "Resumo do conteúdo",
-        "Link da videoaula",
-        "A resposta é a opção A."
+        "Lei de Snell-Descartes: n₁ senθ₁ = n₂ senθ₂.",
+        "Dica: Se n₂ > n₁, o raio refrata-se aproximando da normal.",
+        "A resposta correta é a opção A.",
       ],
     },
   ],
 
-  // Eletromagnetismo
+  // Eletromagnetismo (3)
   [
     {
       text: "Qual lei relaciona campo magnético, corrente elétrica e força em um condutor, conhecida como força de Ampère?",
@@ -120,24 +110,24 @@ const physics = [
       ],
       correctAnswer: 2,
       dicas: [
-        "Resumo do conteúdo",
-        "Link da videoaula",
-        "A resposta é a opção C."
+        "Descreve a força magnética em um fio percorrido por corrente.",
+        "Dica: F = i * L × B (força, corrente, comprimento e campo).",
+        "A resposta correta é a opção C (Lei de Ampère).",
       ],
     },
     {
       text: "Qual equação de Maxwell descreve como um campo elétrico variável no tempo gera um campo magnético?",
       options: [
-        "∇ · E = ρ/ε0",
-        "∇ × B = μ0 J + μ0 ε0 ∂E/∂t",
+        "∇ · E = ρ/ε₀",
+        "∇ × B = μ₀ J + μ₀ ε₀ ∂E/∂t",
         "∇ × E = - ∂B/∂t",
         "∇ · B = 0",
       ],
       correctAnswer: 1,
       dicas: [
-        "Resumo do conteúdo",
-        "Link da videoaula",
-        "A resposta é a opção B."
+        "Lei de Ampère-Maxwell: campos magnéticos podem ser gerados por correntes ou campos elétricos variáveis.",
+        "Dica: Termo μ₀ ε₀ ∂E/∂t é a 'corrente de deslocamento'.",
+        "A resposta correta é a opção B.",
       ],
     },
   ],

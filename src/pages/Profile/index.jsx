@@ -43,14 +43,27 @@ const COLORS = [
 
 export function Profile() {
   const currentUser = localStorage.getItem("email");
+  // const [currentUser, setCurrentUser] = useState("");
   const navigate = useNavigate();
   const [data, setData] = useState({});
+  const [totalPointsSum, setTotalPointsSum] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await getStat(currentUser);
-      console.log("reponse: " + response);
+      console.log(response);
       setData(response);
+      setTotalPointsSum(
+        response.totalpt +
+          response.totallt +
+          response.totalht +
+          response.totalgg +
+          response.totalph +
+          response.totalsc +
+          response.totalmt +
+          response.totalpc +
+          response.totalch
+      );
     };
 
     fetchData();
@@ -133,47 +146,47 @@ export function Profile() {
     const subjectsGraph = [
       {
         type: "Português",
-        percentage: Math.round((data.totalpt / data.total) * 100),
+        percentage: Math.round((data.totalpt / totalPointsSum) * 100),
         color: "var(--color-blue-700)",
       },
       {
         type: "Literatura",
-        percentage: Math.round((data.totallt / data.total) * 100),
+        percentage: Math.round((data.totallt / totalPointsSum) * 100),
         color: "var(--color-red-800)",
       },
       {
         type: "História",
-        percentage: Math.round((data.totalht / data.total) * 100),
+        percentage: Math.round((data.totalht / totalPointsSum) * 100),
         color: "var(--color-orange-100)",
       },
       {
         type: "Geografia",
-        percentage: Math.round((data.totalgg / data.total) * 100),
+        percentage: Math.round((data.totalgg / totalPointsSum) * 100),
         color: "var(--color-green-700)",
       },
       {
         type: "Filosofia",
-        percentage: Math.round((data.totalph / data.total) * 100),
+        percentage: Math.round((data.totalph / totalPointsSum) * 100),
         color: "var(--color-yellow-700)",
       },
       {
         type: "Sociologia",
-        percentage: Math.round((data.totalsc / data.total) * 100),
+        percentage: Math.round((data.totalsc / totalPointsSum) * 100),
         color: "var(--color-pink-100)",
       },
       {
         type: "Matemática",
-        percentage: Math.round((data.totalmt / data.total) * 100),
+        percentage: Math.round((data.totalmt / totalPointsSum) * 100),
         color: "var(--color-indigo-700)",
       },
       {
         type: "Física",
-        percentage: Math.round((data.totalpc / data.total) * 100),
+        percentage: Math.round((data.totalpc / totalPointsSum) * 100),
         color: "var(--color-green-100)",
       },
       {
         type: "Química",
-        percentage: Math.round((data.totalch / data.total) * 100),
+        percentage: Math.round((data.totalch / totalPointsSum) * 100),
         color: "var(--color-red-700)",
       },
     ];
@@ -197,6 +210,8 @@ export function Profile() {
 
     return rightWordData;
   }
+
+  console.log(totalPointsSum);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 overflow-hidden">
@@ -239,7 +254,7 @@ export function Profile() {
         {/* Subjects Distribution Pie Chart */}
         <ChartBox className="w-full max-w-2xl">
           <h3 className="text-xl font-semibold text-gray-200 mb-4">
-            Distribuição por Matéria
+            Distribuição por Matéria - Quantidade de pontos (%)
           </h3>
           <ResponsiveContainer width="100%" height={400}>
             <PieChart>
@@ -259,12 +274,15 @@ export function Profile() {
                 ))}
               </Pie>
               <Tooltip
-                contentStyle={{
-                  background: "rgba(0, 0, 0, 0.8)",
-                  border: "1px solid rgba(255, 255, 255, 0.1)",
-                  borderRadius: "8px",
-                  text: "white"
-                }}
+                content={({ payload }) => (
+                  <div className="bg-gray-800 p-2 rounded border border-gray-700">
+                    {payload.map((entry) => (
+                      <p key={entry.name} className="text-sm text-white">
+                        {entry.name}: {entry.value}%
+                      </p>
+                    ))}
+                  </div>
+                )}
               />
               <Legend
                 layout="vertical"
@@ -285,6 +303,7 @@ export function Profile() {
             <PieChart>
               <Pie
                 data={formatRightsWrongData()}
+                nameKey="type"
                 dataKey="percentage"
                 innerRadius="60%"
                 outerRadius="80%"

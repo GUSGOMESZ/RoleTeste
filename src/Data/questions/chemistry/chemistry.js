@@ -1,70 +1,89 @@
 const chemistrySignatures = {
-    0: "Química Geral",
-    1: "Química Orgânica",
-    2: "Química Inorgânica",
-    3: "Físico-Química",
+  0: "Química Geral",
+  1: "Química Orgânica",
+  2: "Química Inorgânica",
+  3: "Físico-Química",
 };
 
 const chemistry = [
-  // Química Geral
+  // Química Geral (0)
   [
     {
       text: "Qual é a unidade de concentração definida como mol de soluto por litro de solução?",
-      options: ["Molalidade", "Molaridade", "Normalidade", "Fracionamento molar"],
+      options: [
+        "Molalidade",
+        "Molaridade",
+        "Normalidade",
+        "Fracionamento molar",
+      ],
       correctAnswer: 1,
       dicas: [
-        "Conheça as diferentes unidades de concentração",
-        "Link da videoaula",
-        "A resposta é a opção B."
+        "A molaridade relaciona quantidade de matéria (mol) e volume da solução (L).",
+        "Dica: A fórmula é M = mol do soluto / litros da solução.",
+        "A resposta é a opção B.",
       ],
     },
     {
       text: "Qual lei descreve a relação entre pressão e volume de um gás ideal a temperatura constante?",
-      options: ["Lei de Charles", "Lei de Boyle", "Lei de Avogadro", "Lei de Dalton"],
+      options: [
+        "Lei de Charles",
+        "Lei de Boyle",
+        "Lei de Avogadro",
+        "Lei de Dalton",
+      ],
       correctAnswer: 1,
       dicas: [
-        "Fórmula: P1*V1 = P2*V2",
-        "Link da videoaula",
-        "A resposta é a opção B."
+        "Lei de Boyle: pressão e volume são inversamente proporcionais.",
+        "Dica: P₁V₁ = P₂V₂ (temperatura constante).",
+        "A resposta é a opção B.",
       ],
     },
   ],
 
-  // Química Orgânica
+  // Química Orgânica (1)
   [
     {
       text: "Qual é o grupo funcional presente nos álcoois?",
-      options: ["Aldeído (-CHO)", "Cetona (C=O)", "Hidroxila (-OH)", "Éster (-COO-)"],
+      options: [
+        "Aldeído (-CHO)",
+        "Cetona (C=O)",
+        "Hidroxila (-OH)",
+        "Éster (-COO-)",
+      ],
       correctAnswer: 2,
       dicas: [
-        "Identifique os grupos funcionais comuns",
-        "Link da videoaula",
-        "A resposta é a opção C."
+        "Álcoois têm o grupo -OH ligado a carbono saturado.",
+        "Dica: Exemplos: etanol (CH₃CH₂OH), metanol (CH₃OH).",
+        "A resposta é a opção C.",
       ],
     },
     {
       text: "Qual reação orgânica converte um alceno em um diálcool adicionando água?",
-      options: ["Hidratação", "Hidrogenação", "Hidrólise",
-                "Dihidratação"],
+      options: ["Hidratação", "Hidrogenação", "Hidrólise", "Dihidratação"],
       correctAnswer: 0,
       dicas: [
-        "Reações de adição em alquenos",
-        "Link da videoaula",
-        "A resposta é a opção A."
+        "Hidratação de alcenos segue a regra de Markovnikov.",
+        "Dica: Usa ácido sulfúrico (H₂SO₄) como catalisador.",
+        "A resposta é a opção A.",
       ],
     },
   ],
 
-  // Química Inorgânica
+  // Química Inorgânica (2)
   [
     {
       text: "Qual composto é conhecido como sal de cozinha?",
-      options: ["Cloreto de potássio (KCl)", "Cloreto de sódio (NaCl)", "Sulfato de magnésio (MgSO4)", "Nitrato de cálcio (Ca(NO3)2)"],
+      options: [
+        "Cloreto de potássio (KCl)",
+        "Cloreto de sódio (NaCl)",
+        "Sulfato de magnésio (MgSO₄)",
+        "Nitrato de cálcio (Ca(NO₃)₂)",
+      ],
       correctAnswer: 1,
       dicas: [
-        "Uso cotidiano de sais inorgânicos",
-        "Link da videoaula",
-        "A resposta é a opção B."
+        "O NaCl é essencial para a função biológica e culinária.",
+        "Dica: É o principal componente do sal marinho.",
+        "A resposta é a opção B.",
       ],
     },
     {
@@ -72,23 +91,28 @@ const chemistry = [
       options: ["Iônica", "Covalente", "Metálica", "Van der Waals"],
       correctAnswer: 1,
       dicas: [
-        "Diferença entre ligações iônica e covalente",
-        "Link da videoaula",
-        "A resposta é a opção B."
+        "Ligações covalentes são comuns em moléculas orgânicas.",
+        "Dica: Exemplo: H₂O (água) e CH₄ (metano).",
+        "A resposta é a opção B.",
       ],
     },
   ],
 
-  // Físico-Química
+  // Físico-Química (3)
   [
     {
       text: "Qual propriedade coligativa causa a elevação do ponto de ebulição de uma solução?",
-      options: ["Pressão osmótica", "Elevamento ebuliométrico", "Depressão crioscópica", "Tensão superficial"],
+      options: [
+        "Pressão osmótica",
+        "Elevamento ebuliométrico",
+        "Depressão crioscópica",
+        "Tensão superficial",
+      ],
       correctAnswer: 1,
       dicas: [
-        "Entenda propriedades coligativas",
-        "Link da videoaula",
-        "A resposta é a opção B."
+        "Quanto mais partículas dissolvidas, maior o efeito coligativo.",
+        "Dica: Exemplo: água salgada ferve a mais de 100°C.",
+        "A resposta é a opção B.",
       ],
     },
     {
@@ -96,9 +120,9 @@ const chemistry = [
       options: ["Energia de ativação", "Energia livre", "Entalpia", "Entropia"],
       correctAnswer: 0,
       dicas: [
-        "Compreenda a cinética química",
-        "Link da videoaula",
-        "A resposta é a opção A."
+        "Ea é a energia mínima para que uma reação ocorra.",
+        "Dica: Catalisadores diminuem Ea, acelerando a reação.",
+        "A resposta é a opção A.",
       ],
     },
   ],

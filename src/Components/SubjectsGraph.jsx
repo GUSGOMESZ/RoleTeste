@@ -20,7 +20,7 @@ ChartJS.register(
 );
 
 export function SubjectsGraph({ stats }) {
-  console.log(stats);
+  // console.log(stats);
   // Extrair dados das matérias do objeto stats
   const materiasData = {
     labels: ["CH", "GG", "HT", "LT", "MT", "PC", "PH", "PT", "SC"],
