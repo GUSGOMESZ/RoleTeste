@@ -13,11 +13,17 @@ import {
   portugueseSignatures,
 } from "../../Data/questions/portuguese/portuguese";
 
+import {
+  literature,
+  literatureSignatures,
+} from "../../Data/questions/literature/literature";
+
 import { FaUser } from "react-icons/fa";
 import { FaClipboardList } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
 
 import "../../App.css";
+
 import {
   incrementChemistry,
   incrementGeography,
@@ -53,15 +59,19 @@ function getRandomObject(array) {
 }
 
 const template = {
-  text: "Qual dos seguintes sistemas de administração colonial foi caracterizado pelo uso direto de governantes europeus nas colônias?",
+  text: "'No meio do caminho tinha uma pedra\ntinha uma pedra no meio do caminho\n(...)\nNunca me esquecerei desse acontecimento\nna vida de minhas retinas tão fatigadas'",
   options: [
-    "Colonialismo de exploração",
-    "Sistema de protetorado",
-    "Administração indireta",
-    "Administração direta",
+    "Verbo no gerúndio",
+    "Verbo no particípio",
+    "Advérbio de modo",
+    "Substantivo comum",
   ],
-  correctAnswer: 3,
-  dicas: ["Resumo do conteúdo", "Link da videoaula", "A resposta é a opção D."],
+  correctAnswer: 0,
+  dicas: [
+    "Resumo do conteudo",
+    "Link da videoaula",
+    "A resposta eh a opcao C.",
+  ],
 };
 
 export function Roulette() {
@@ -113,12 +123,17 @@ export function Roulette() {
   const activeQuestion = () => {
     const selectedKey = findIndexByValue(data, selectedContent);
 
-    const questionsArray = portuguese[selectedKey];
+    console.log(activeButton);
+
+    let questionsArray;
+
+    if (activeButton === "Portugues") questionsArray = portuguese[selectedKey];
+    if (activeButton === "Literatura") questionsArray = literature[selectedKey];
 
     const temp = getRandomObject(questionsArray);
 
-    // setRandomQuestion(temp);
-    setRandomQuestion(template);
+    setRandomQuestion(temp);
+    // setRandomQuestion(template);
 
     setIsConfirming(false);
     setIsAsking(true);
