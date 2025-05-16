@@ -22,7 +22,16 @@ export function Ranking() {
         const account = accounts.find((acc) => acc.userId === stat.userid);
         return {
           userEmail: account ? account.userEmail : "Usuário desconhecido",
-          points: stat.total,
+          points:
+            stat.totalpt +
+            stat.totallt +
+            stat.totalht +
+            stat.totalgg +
+            stat.totalph +
+            stat.totalsc +
+            stat.totalmt +
+            stat.totalpc +
+            stat.totalch,
         };
       });
 
@@ -61,7 +70,7 @@ export function Ranking() {
             Usuário
           </div>
           <div className="text-xl font-semibold text-purple-300 uppercase">
-            Pontos
+            Pontuação
           </div>
         </div>
 
@@ -105,7 +114,7 @@ export function Ranking() {
 
         {/* Rodapé Decorativo */}
         <div className="p-4 bg-gradient-to-r from-blue-900/20 to-purple-900/20 text-center text-sm text-gray-400">
-          Atualizado em tempo real
+          .
         </div>
       </div>
 

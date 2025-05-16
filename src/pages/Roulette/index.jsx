@@ -373,7 +373,10 @@ export function Roulette() {
                 Não
               </button>
               <button
-                onClick={() => activeQuestion()}
+                onClick={() => {
+                  activeQuestion();
+                  setOpenHints([false, false, false]);
+                }}
                 className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
               >
                 Sim
